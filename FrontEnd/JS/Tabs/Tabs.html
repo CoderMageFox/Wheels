@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="tabs xxx">
+    <ol class="tabs-bar">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ol>
+    <ol class="tabs-content">
+        <li>content 1</li>
+        <li>content 2</li>
+        <li>content 3</li>
+    </ol>
+</div>
+
+<div class="tabs xxx">
+    <ol class="tabs-bar">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ol>
+    <ol class="tabs-content">
+        <li>content 1</li>
+        <li>content 2</li>
+        <li>content 3</li>
+    </ol>
+</div>
+</body>
+<style>
+    .tabs{}
+    .tabs > ol{
+        list-style: none;
+        margin: 0; padding: 0;
+    }
+    .tabs > ol.tabs-bar{
+        display: flex;
+        border-bottom: 1px solid red;
+    }
+    .tabs > ol.tabs-bar > li{
+        padding: 4px 8px;
+        border: 1px solid transparent;
+        border-bottom: 0;
+    }
+    .tabs > ol.tabs-bar > li:hover{
+        border-color: red;
+    }
+
+    .tabs > ol.tabs-bar > li.active{
+        border-color: blue;
+    }
+    .tabs > ol.tabs-content > li{
+        display: none;
+    }
+    .tabs > ol.tabs-content > li.active{
+        display: block;
+    }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="Tabs.js"></script>
+</html>
