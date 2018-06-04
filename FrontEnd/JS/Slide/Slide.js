@@ -3,12 +3,13 @@ class Slide {
         this.options = options
         this.$element = $(this.options.element)
         this.$element.addClass('Slides')
+        this.times=options.times;
         this.timer=undefined;
         this.$ol = this.$element.children('ol')
-        const firstImg=this.$ol.children('li:first-child').clone()
+    /*    const firstImg=this.$ol.children('li:first-child').clone()
         const lastImg=this.$ol.children('li:last-child').clone()
         this.$ol.append(firstImg);
-        this.$ol.prepend(lastImg);
+        this.$ol.prepend(lastImg);*/
         this.$items = this.$ol.children('li')
         this.width = this.$ol.children('li').width()
         this.$element.width(this.width)
@@ -40,7 +41,7 @@ class Slide {
             transform: `translateX(${-target * this.width }px`})
     }
     go(index) {
-        if (index > this.$items.length-1) {
+       /* if (index > this.$items.length-1) {
             this.$ol.css({
                 transition: `none`})
             this.gotoTrans(1)
@@ -50,15 +51,15 @@ class Slide {
                 transition: `none`})
             this.gotoTrans(this.$items.length-1)
             index = this.$items.length - 2
-            /*实际长度为原length+2*/
+            /!*实际长度为原length+2*!/
         }else
-        {
+        {*/
             this.gotoTrans(index)
             this.$ol.css({
                 transition: ` all 1s`})
 
 
-        }
+      /*  }*/
         this.current = index
     }
 
@@ -69,10 +70,16 @@ class Slide {
     prev() {
         this.go(this.current - 1)
     }
-    play(){
-        this.timer=setInterval(()=>{
-            this.go(this.current+1)
-        },2000)
+    play(setTime){
+        let times=setTime;
+        this.times.forEach((item)=> {
+            this.timer=setInterval(()=>{
+                this.go(this.current+1)
+                window.clearInterval(this.timer)
+            },item)
+            console.log(item)
+        })
+
     }
     stop(){
         window.clearInterval(this.timer)
@@ -83,5 +90,6 @@ var slide = new Slide({
     element: '.slides',
     autoPlay: true,
     controls: false,
-    pager: false
+    pager: false,
+    times:[20000,80000,120000,160000]
 });
